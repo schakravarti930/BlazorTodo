@@ -1,12 +1,13 @@
 ﻿@page "/"
 
-<div class="content">
+<div class="container">
     <div class="heading">
-        <span>TODO</span>
+        <span>TODO</span>  
+        <img src="images/icon-moon.svg" alt="moon-icon"/>
     </div>
-    
-</div>
-<input placeholder="Something Todo" type="text" @bind="newTodo">
+    <div class="input">
+        <input placeholder="Something Todo" type="text" @bind="newTodo">
+    </div>
     <button @onclick = "AddTodo">Add Todo</button>
 
     <ul>
@@ -18,6 +19,9 @@
             </li>
         }
     </ul>
+</div>
+
+    
 @code {
     private IList<TodoItem> todos = new List<TodoItem>();
     private string newTodo;
