@@ -6,9 +6,10 @@
         <img src="images/icon-moon.svg" alt="moon-icon"/>
     </div>
     <div class="input">
-        <input placeholder="Something Todo" type="text" @bind="newTodo">
+        <input placeholder="Create a new Todo..." type="text" @bind="newTodo" @onkeyup = "Enter"/>
+        <i class="far fa-circle" id="circle"></i>
+        <i class="fas fa-check" id="check" @onclick = "AddTodo"></i>
     </div>
-    <button @onclick = "AddTodo">Add Todo</button>
 
     <ul>
         @foreach (var todo in todos)
@@ -31,6 +32,13 @@
         {
             todos.Add(new TodoItem{ Title = newTodo });
             newTodo = string.Empty;
+        }
+    }
+    private void Enter(KeyboardEventArgs eventArgs)
+    {
+        if(eventArgs.Code == "Enter" || eventArgs.Code == "NumpadEnter")
+        {
+            this.AddTodo();
         }
     }
 }
