@@ -8,10 +8,26 @@
     <div class="input">
         <input placeholder="Create a new Todo..." type="text" @bind="newTodo" @onkeyup = "Enter"/>
         <i class="far fa-circle" id="circle"></i>
-        <i class="fas fa-check" id="check" @onclick = "AddTodo"></i>
+        <i class="fas fa-plus" id="add" @onclick = "AddTodo"></i>
     </div>
+    <div class="content">
+        @foreach (var todoItem in todos)
+        {
+            <DisplayTodo todoItem = "todoItem">
 
-    <ul>
+            </DisplayTodo>
+        }
+    </div>
+    <div class="footer">
+        <span id = "items-left">@todos.Count items left</span>
+        <div class="states">
+            <span>All</span>
+            <span>Active</span>
+            <span>Completed</span>
+        </div>
+        <span id = "clear">Clear Completed</span>
+    </div>
+    @* <ul>
         @foreach (var todo in todos)
         {
             <li>
@@ -19,7 +35,7 @@
                 <input @bind="todo.Title">
             </li>
         }
-    </ul>
+    </ul> *@
 </div>
 
     

@@ -1,0 +1,10 @@
+<div class="displayTodo">
+    <input class="title" @bind = "todoItem.Title">
+    <i class="fas fa-check-circle"></i>
+    <i class="fas fa-times"></i>
+</div>
+
+@code {
+    [Parameter]
+    public TodoItem todoItem { get; set; }
+}
