@@ -3,13 +3,21 @@
     display: flex;
     align-items: center;
     width: 100%;
-    height: 60px;
+    height: 65px;
 }
 
 input.title{
+    background-color: white;
     height: -webkit-fill-available;
     width: -webkit-fill-available;
     padding-left: 64px;
+    font-family: 'Josefin Sans',sans-serif;
+    font-size: 24px;
+    color: hsl(235, 19%, 35%);
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom-color:hsl(233, 11%, 84%)
 }
 input[type=checkbox]{
     position:absolute;
@@ -17,9 +25,13 @@ input[type=checkbox]{
 .fa-check-circle{
     color: rgb(179, 174, 174);
     font-size: 24px;
-    padding-left: 20px;
+    margin-left: 20px;
     position: absolute;
     transition: 0.2s ease;
+}
+.fa-check-circle:hover{
+    cursor: pointer;
+    color: yellow;
 }
 .fa-times{
     color: rgb(179, 174, 174);
@@ -27,4 +39,19 @@ input[type=checkbox]{
     position: absolute;
     right: 20px;
     transition: 0.2s ease;
+    display: none;
+}
+.title:hover{
+    cursor: pointer;
+}
+.fa-times:hover{
+    display: inline;
+    cursor: pointer;
+    color: rgb(232, 16, 16);
+}
+.title:hover ~.fa-times{
+    display: block;
+}
+.displayTodo:first-child input{
+    border-radius: 10px 10px 0 0;
 }
