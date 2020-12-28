@@ -12,28 +12,40 @@ input.title{
     width: -webkit-fill-available;
     padding-left: 64px;
     font-family: 'Josefin Sans',sans-serif;
-    font-size: 24px;
-    color: hsl(235, 19%, 35%);
+    font-size: 20px;
+    color:  hsl(235, 19%, 35%);
     border-top: none;
     border-left: none;
     border-right: none;
-    border-bottom-color:hsl(233, 11%, 84%)
+    border-bottom:1px solid hsl(233, 11%, 84%)
 }
 input[type=checkbox]{
     position:absolute;
 }
-.fa-check-circle{
-    color: rgb(179, 174, 174);
-    font-size: 24px;
+.circle{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgb(179, 174, 174);
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
     margin-left: 20px;
     position: absolute;
-    transition: 0.2s ease;
 }
+.circle:hover{
+    cursor: pointer;
+    border: 1px solid hsl(199, 80%, 35%);
+}
+/* .circle:{
+    background:linear-gradient(to right,hsl(192, 100%, 67%),hsl(280, 87%, 65%));
+} */
+/*Create a circular div*/
 .fa-check-circle:hover{
     cursor: pointer;
     color: yellow;
 }
-.fa-times{
+.cross{
     color: rgb(179, 174, 174);
     font-size: 24px;
     position: absolute;
@@ -44,12 +56,11 @@ input[type=checkbox]{
 .title:hover{
     cursor: pointer;
 }
-.fa-times:hover{
+.cross:hover{
     display: inline;
     cursor: pointer;
-    color: rgb(232, 16, 16);
 }
-.title:hover ~.fa-times{
+.title:hover ~.cross{
     display: block;
 }
 .displayTodo:first-child input{

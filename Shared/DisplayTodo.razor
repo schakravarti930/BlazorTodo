@@ -1,10 +1,18 @@
 <div class="displayTodo">
     <input disabled draggable="true" class="title" @bind = "todoItem.Title">
-    <i class="fas fa-check-circle"></i>
-    <i class="fas fa-times"></i>
+    <div class="circle" @onclick="setDone">
+        <img src="images/icon-check.svg" class="check">
+    </div>
+     <img src="images/icon-cross.svg" class="cross"> 
 </div>
 
 @code {
     [Parameter]
     public TodoItem todoItem { get; set; }
+    [Parameter]
+    public EventCallback<TodoItem> OnItemDeleted { get; set; }
+    private void setDone()
+    {
+        
+    }
 }
