@@ -6,11 +6,14 @@
     height: 65px;
 }
 
-input.title{
+.title{
     background-color: white;
     height: -webkit-fill-available;
     width: -webkit-fill-available;
+    display: flex;
+    align-items: center;
     padding-left: 64px;
+    padding-right: 64px;
     font-family: 'Josefin Sans',sans-serif;
     font-size: 20px;
     color:  hsl(235, 19%, 35%);
@@ -20,30 +23,31 @@ input.title{
     border-bottom:1px solid hsl(233, 11%, 84%)
 }
 input[type=checkbox]{
-    position:absolute;
+    display: none;
 }
-.circle{
+input[type=checkbox] + label::before{
+    content: url("images/icon-check.svg");
     display: flex;
-    align-items: center;
     justify-content: center;
-    border: 1px solid rgb(179, 174, 174);
-    height: 20px;
+    align-items: center;
     width: 20px;
-    border-radius: 50%;
-    margin-left: 20px;
+    height: 20px;
+    border: 1px solid hsl(236, 33%, 92%);
     position: absolute;
-}
-.circle:hover{
+    left: 20px;
+    top: 22px;
+    border-radius: 50%;
     cursor: pointer;
-    border: 1px solid hsl(199, 80%, 35%);
 }
-/* .circle:{
-    background:linear-gradient(to right,hsl(192, 100%, 67%),hsl(280, 87%, 65%));
-} */
-/*Create a circular div*/
-.fa-check-circle:hover{
-    cursor: pointer;
-    color: yellow;
+input[type=checkbox] + label:hover::before{
+    border:1px solid hsl(220, 98%, 61%);
+}
+input[type=checkbox]:checked + label::before{
+    background: linear-gradient(to right,hsl(192, 100%, 67%) , hsl(280, 87%, 65%));
+}
+input[type=checkbox]:checked + label{
+    color: hsl(233, 11%, 84%);
+    text-decoration: line-through;
 }
 .cross{
     color: rgb(179, 174, 174);

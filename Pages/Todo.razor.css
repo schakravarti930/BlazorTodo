@@ -38,6 +38,7 @@ input[type=text]{
     font-family: 'Josefin Sans', sans-serif;
     font-size: 20px;
     padding-left: 64px;
+    padding-right: 64px;
     border-radius: 10px;
     border: none;
     outline: none;

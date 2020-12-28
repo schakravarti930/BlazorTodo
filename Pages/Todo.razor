@@ -13,7 +13,7 @@
     <div class="content">
         @foreach (var todoItem in todos)
         {
-            <DisplayTodo todoItem = "todoItem">
+            <DisplayTodo todoItem = "todoItem" OnItemDeleted = "@deleteItem" OnItemSelected = "@markDone">
 
             </DisplayTodo>
         }
@@ -27,20 +27,11 @@
         </div>
         <span id = "clear">Clear Completed</span>
     </div>
-    @* <ul>
-        @foreach (var todo in todos)
-        {
-            <li>
-                <input type="checkbox" @bind="todo.IsDone">
-                <input @bind="todo.Title">
-            </li>
-        }
-    </ul> *@
 </div>
 
     
 @code {
-    private IList<TodoItem> todos = new List<TodoItem>();
+    private List<TodoItem> todos = new List<TodoItem>();
     private string newTodo;
     private void AddTodo()
     {
@@ -56,5 +47,13 @@
         {
             this.AddTodo();
         }
+    }
+    private void deleteItem(int Id)
+    {
+        todos.Remove(todos.Find(p => p.Id == Id));
+    }
+    private void markDone(int id)
+    {
+        todos.Find(p => p.Id == id).IsDone = !todos.Find(p => p.Id == id).IsDone;
     }
 }

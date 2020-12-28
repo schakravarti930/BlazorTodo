@@ -32,5 +32,18 @@
     </div>
 
     <script src="_framework/blazor.server.js"></script>
+    <script>
+        function accessCheckDiv()
+        {
+            var checkbox = document.querySelector(".circle");
+            if(checkbox.className === "circle")
+            {
+                checkbox.className = "circle-checked";
+            }
+            else{
+                checkbox.className = "circle";
+            }
+        }
+    </script>
 </body>
 </html>
