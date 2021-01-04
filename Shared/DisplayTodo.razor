@@ -1,6 +1,6 @@
 
 <div class="displayTodo">
-    <input type="checkbox" @onchange="setDone" id="@todoItem.Id">
+    <input type="checkbox" checked = "@todoItem.IsDone" @onchange = "setDone" id="@todoItem.Id">
     <label for="@todoItem.Id" class="title">@todoItem.Title</label>
     <img src="images/icon-cross.svg" class="cross" @onclick="removeItem"> 
 </div>
@@ -11,8 +11,9 @@
     [Parameter]
     public EventCallback<int> OnItemDeleted { get; set; }
     [Parameter]
-    public EventCallback<int> OnItemSelected { get; set; }
-    private async Task setDone()
+    public EventCallback<int> OnItemSelected{ get; set; }
+    
+    private async Task setDone(ChangeEventArgs eventArgs)
     {
         await OnItemSelected.InvokeAsync(todoItem.Id);
     }

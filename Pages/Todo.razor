@@ -13,7 +13,7 @@
     <div class="content">
         @foreach (var todoItem in todos)
         {
-            <DisplayTodo todoItem = "todoItem" OnItemDeleted = "@deleteItem" OnItemSelected = "@markDone">
+            <DisplayTodo todoItem = "todoItem" OnItemDeleted = "@deleteItem" OnItemSelected = "@checkItem">
 
             </DisplayTodo>
         }
@@ -52,8 +52,9 @@
     {
         todos.Remove(todos.Find(p => p.Id == Id));
     }
-    private void markDone(int id)
+    private void checkItem(int Id)
     {
-        todos.Find(p => p.Id == id).IsDone = !todos.Find(p => p.Id == id).IsDone;
+       todos.Find(p => p.Id == Id).IsDone = !todos.Find(p => p.Id == Id).IsDone;
+       
     }
 }
