@@ -1,5 +1,5 @@
 li{
-    list-.contentype: none;
+    list-content-type: none;
 }
 
 .container{
@@ -85,13 +85,15 @@ input:focus{
     font-weight: 700;
 }
 .states span{
-    transition: 0.2s;
+    transition: 0.1s;
 }
 .states span:hover{
     cursor: pointer;
     color: hsl(235, 19%, 35%);
 }
-
+    .states span.active {
+        color: hsl(220, 98%, 61%);
+    }
 #items-left,#clear{
     text-align: center;
     transition: 0.2s;

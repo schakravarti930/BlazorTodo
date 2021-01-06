@@ -11,7 +11,7 @@
         <i class="fas fa-plus" id="add" @onclick = "AddTodo"></i>
     </div>
     <div class="content">
-        @foreach (var todoItem in todos)
+        @foreach (var todoItem in currentList)
         {
             <DisplayTodo todoItem = "todoItem" OnItemDeleted = "@deleteItem" OnItemSelected = "@checkItem">
 
@@ -21,18 +21,27 @@
     <div class="footer">
         <span id = "items-left">@todos.Count(p => !p.IsDone) items left</span>
         <div class="states">
-            <span>All</span>
-            <span>Active</span>
-            <span>Completed</span>
+            <span @onclick="GetAllTodos" class="@(currentTab == "All" ? "active" : "")" >All</span>
+            <span @onclick ="GetActiveTodos" class="@(currentTab == "Active" ? "active" : "")">Active</span>
+            <span @onclick ="GetCompletedTodos" class="@(currentTab == "Completed" ? "active" : "")">Completed</span>
         </div>
-        <span id = "clear">Clear Completed</span>
+        <span id = "clear" @onclick="ClearCompleted">Clear Completed</span>
     </div>
 </div>
 
     
 @code {
-    private List<TodoItem> todos = new List<TodoItem>();
+    private  List<TodoItem> todos = new List<TodoItem>();
+    private List<TodoItem> currentList;
+    public static string currentTab = "All";
+
     private string newTodo;
+
+    public Todo()
+    {
+        this.currentList = todos;
+    }
+
     private void AddTodo()
     {
         if(!string.IsNullOrWhiteSpace(newTodo))
@@ -52,9 +61,30 @@
     {
         todos.Remove(todos.Find(p => p.Id == Id));
     }
+
     private void checkItem(int Id)
     {
-       todos.Find(p => p.Id == Id).IsDone = !todos.Find(p => p.Id == Id).IsDone;
-       
+        todos.Find(p => p.Id == Id).IsDone = !todos.Find(p => p.Id == Id).IsDone;
+
+    }
+
+    private void GetActiveTodos()
+    {
+        currentList = todos.Where(item => item.IsDone == false).ToList();
+        currentTab = "Active";
+    }
+    private void GetCompletedTodos()
+    {
+        currentList = todos.Where(item => item.IsDone == true).ToList();
+        currentTab = "Completed";
+    }
+    private void GetAllTodos()
+    {
+        currentList = todos;
+        currentTab = "All";
+    }
+    private void ClearCompleted()
+    {
+        todos.RemoveAll(item => item.IsDone == true);
     }
 }

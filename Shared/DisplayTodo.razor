@@ -13,7 +13,7 @@
     [Parameter]
     public EventCallback<int> OnItemSelected{ get; set; }
     
-    private async Task setDone(ChangeEventArgs eventArgs)
+    private async Task setDone()
     {
         await OnItemSelected.InvokeAsync(todoItem.Id);
     }
