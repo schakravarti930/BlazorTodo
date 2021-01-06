@@ -1,7 +1,17 @@
 li{
-    list-content-type: none;
+    list-style-type: none;
 }
-
+.main-page {
+    height: 100%;
+    width: 100%;
+    background: url("/images/bg-desktop-light.jpg") no-repeat;
+    display: flex;
+    justify-content: center;
+    transition: background 500ms ease;
+}
+.dark{
+    background: url("/images/bg-desktop-dark.jpg") no-repeat var(--background);
+}
 .container{
     width: 540px;
     padding: 80px 0 50px 0;
@@ -23,7 +33,13 @@ li{
     color: white;
     letter-spacing: 10px;
 }
-
+.img-theme {
+    content: url("/images/icon-moon.svg");
+    cursor:pointer;
+}
+.dark .img-theme {
+    content: url("images/icon-sun.svg");
+}
 .input{
     position: relative;
     align-items: center;
@@ -36,6 +52,8 @@ input[type=text]{
     height: -webkit-fill-available;
     width: -webkit-fill-available;
     font-family: 'Josefin Sans', sans-serif;
+    background-color:var(--text-background-list);
+    color:var(--text-color-input);
     font-size: 20px;
     padding-left: 64px;
     padding-right: 64px;
@@ -43,12 +61,15 @@ input[type=text]{
     border: none;
     outline: none;
 }
+input[type=text]::placeholder{
+    color:var(--placeholder);
+}
 input:focus{
-    caret-color: hsl(220, 98%, 61%);
+    caret-color: var(--bright-blue);
 }
 
 .circle{
-    border: 1px solid hsl(236, 33%, 92%);
+    border: 1px solid var(--circle);
     border-radius: 50%;
     height: 20px;
     width: 20px;
@@ -64,10 +85,10 @@ input:focus{
 }
 #add:hover{
     cursor:pointer;
-    color:  hsl(220, 98%, 61%);
+    color: var(--bright-blue);
 }
 .footer{
-    background-color: white;
+    background-color: var(--text-background-list);
     border-radius: 0 0 10px 10px;
     display: grid;
     grid-template-columns: auto auto auto;
@@ -77,7 +98,7 @@ input:focus{
     box-shadow: 6px 12px 11px -6px rgba(0,0,0,0.3),-6px 12px 11px -6px rgba(0,0,0,0.3); ;
     z-index: 1;
     font-size: 14px;
-    color: hsl(236, 9%, 61%);
+    color: var(--footer);
 }
 .states{
     display: flex;
@@ -89,17 +110,17 @@ input:focus{
 }
 .states span:hover{
     cursor: pointer;
-    color: hsl(235, 19%, 35%);
+    color: var(--footer-hover);
 }
     .states span.active {
-        color: hsl(220, 98%, 61%);
+        color:var(--bright-blue);
     }
 #items-left,#clear{
     text-align: center;
     transition: 0.2s;
 }
 #clear:hover{
-    color: hsl(235, 19%, 35%);
+    color: var(--footer-hover);
     cursor: pointer;
 }
 .content{
@@ -108,20 +129,19 @@ input:focus{
     box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
     overflow-y: scroll;
 }
-.content::-webkit-scrollbar-track
-{
-	border-radius: 10px;
-	background-color: #F5F5F5;
-}
+    .content::-webkit-scrollbar-track {
+        border-radius: 10px;
+        background-color: var(--text-background-list);
+       
+    }
 
-.content::-webkit-scrollbar
-{
-	width: 3px;
-	background-color: #F5F5F5;
-}
+    .content::-webkit-scrollbar {
+        width: 3px;
+        background-color: var(--text-background-list);
+    }
 
 .content::-webkit-scrollbar-thumb
 {
 	border-radius: 10px;
-	background-color: hsl(220, 98%, 61%);
+	background-color: var(--text-background-list);
 }

@@ -1,31 +1,35 @@
 ﻿@page "/"
 
-<div class="container">
-    <div class="heading">
-        <span>TODO</span>  
-        <img src="images/icon-moon.svg" alt="moon-icon"/>
-    </div>
-    <div class="input">
-        <input placeholder="Create a new Todo..." type="text" @bind="newTodo" @onkeyup = "Enter"/>
-        <div class="circle"></div>
-        <i class="fas fa-plus" id="add" @onclick = "AddTodo"></i>
-    </div>
-    <div class="content">
-        @foreach (var todoItem in currentList)
-        {
-            <DisplayTodo todoItem = "todoItem" OnItemDeleted = "@deleteItem" OnItemSelected = "@checkItem">
-
-            </DisplayTodo>
-        }
-    </div>
-    <div class="footer">
-        <span id = "items-left">@todos.Count(p => !p.IsDone) items left</span>
-        <div class="states">
-            <span @onclick="GetAllTodos" class="@(currentTab == "All" ? "active" : "")" >All</span>
-            <span @onclick ="GetActiveTodos" class="@(currentTab == "Active" ? "active" : "")">Active</span>
-            <span @onclick ="GetCompletedTodos" class="@(currentTab == "Completed" ? "active" : "")">Completed</span>
+<div class="main-page @(currentTheme == "Dark" ? "dark" : "")">
+    <div class="container">
+        <div class="heading">
+            <span>TODO</span>  
+            <div class="img-theme" @onclick="changeTheme">
+                
+            </div>
         </div>
-        <span id = "clear" @onclick="ClearCompleted">Clear Completed</span>
+        <div class="input">
+            <input placeholder="Create a new Todo..." type="text" @bind="newTodo" @onkeyup = "Enter"/>
+            <div class="circle"></div>
+            <i class="fas fa-plus" id="add" @onclick = "AddTodo"></i>
+        </div>
+        <div class="content">
+            @foreach (var todoItem in currentList)
+            {
+                <DisplayTodo todoItem = "todoItem" OnItemDeleted = "@deleteItem" OnItemSelected = "@checkItem">
+
+                </DisplayTodo>
+            }
+        </div>
+        <div class="footer">
+            <span id = "items-left">@todos.Count(p => !p.IsDone) items left</span>
+            <div class="states">
+                <span @onclick="GetAllTodos" class="@(currentTab == "All" ? "active" : "")" >All</span>
+                <span @onclick ="GetActiveTodos" class="@(currentTab == "Active" ? "active" : "")">Active</span>
+                <span @onclick ="GetCompletedTodos" class="@(currentTab == "Completed" ? "active" : "")">Completed</span>
+            </div>
+            <span id = "clear" @onclick="ClearCompleted">Clear Completed</span>
+        </div>
     </div>
 </div>
 
@@ -33,8 +37,8 @@
 @code {
     private  List<TodoItem> todos = new List<TodoItem>();
     private List<TodoItem> currentList;
-    public static string currentTab = "All";
-
+    private static string currentTab = "All";
+    private static string currentTheme = "Light";
     private string newTodo;
 
     public Todo()
@@ -86,5 +90,9 @@
     private void ClearCompleted()
     {
         todos.RemoveAll(item => item.IsDone == true);
+    }
+    private void changeTheme()
+    {
+        currentTheme = currentTheme == "Light" ? "Dark" : "Light";
     }
 }
