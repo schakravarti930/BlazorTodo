@@ -1,4 +1,8 @@
 using System.Threading;
+using System.IO;
+using System;
+
+[Serializable]
 public class TodoItem
 {
     static int nextId;

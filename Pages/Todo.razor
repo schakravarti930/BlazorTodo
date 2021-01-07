@@ -1,4 +1,6 @@
 ﻿@page "/"
+@inject Repository.FileIO file
+@implements IDisposable
 
 <div class="main-page @(currentTheme == "Dark" ? "dark" : "")">
     <div class="container">
@@ -35,17 +37,21 @@
 
     
 @code {
-    private  List<TodoItem> todos = new List<TodoItem>();
+    private  List<TodoItem> todos;
     private List<TodoItem> currentList;
-    private static string currentTab = "All";
-    private static string currentTheme = "Light";
+    private  string currentTab = "All";
+    private  string currentTheme = "Light";
     private string newTodo;
 
-    public Todo()
+    protected override void OnInitialized()
     {
-        this.currentList = todos;
+        todos = file.LoadListFromFile();
+        currentList = todos;
     }
-
+    void IDisposable.Dispose()
+    {
+         file.SaveListToFile(todos);
+    }
     private void AddTodo()
     {
         if(!string.IsNullOrWhiteSpace(newTodo))
