@@ -13,7 +13,8 @@ li{
     background: url("/images/bg-desktop-dark.jpg") no-repeat var(--background);
 }
 .container{
-    width: 540px;
+    width: 80%;
+    max-width: 540px;
     padding: 80px 0 50px 0;
     position: relative;
     display: flex;
@@ -28,7 +29,7 @@ li{
     margin-bottom: 35px;
 }
 .heading span{
-    font-size: 34px;
+    font-size: 2em;
     font-weight: bold;
     color: white;
     letter-spacing: 10px;
@@ -54,10 +55,10 @@ input[type=text]{
     font-family: 'Josefin Sans', sans-serif;
     background-color:var(--text-background-list);
     color:var(--text-color-input);
-    font-size: 20px;
+    font-size: 1em;
     padding-left: 64px;
     padding-right: 64px;
-    border-radius: 10px;
+    border-radius: 5px;
     border: none;
     outline: none;
 }
@@ -97,7 +98,7 @@ input:focus{
     width: 100%;
     box-shadow: 6px 12px 11px -6px rgba(0,0,0,0.3),-6px 12px 11px -6px rgba(0,0,0,0.3); ;
     z-index: 1;
-    font-size: 14px;
+    font-size: 0.8em;
     color: var(--footer);
 }
 .states{
@@ -124,7 +125,7 @@ input:focus{
     cursor: pointer;
 }
 .content{
-    border-radius: 10px 10px 0 0;
+    border-radius: 5px 5px 0 0;
     margin-top: 20px;
     box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
     overflow-y: scroll;
@@ -143,5 +144,32 @@ input:focus{
 .content::-webkit-scrollbar-thumb
 {
 	border-radius: 10px;
-	background-color: var(--text-background-list);
+	background-color: var(--bright-blue);
+}
+.mobile-footer-states{
+    display: none;
+}
+@media screen and (max-width:500px){
+    .footer{
+        grid-template-columns: auto auto;
+    }
+    .states{
+        display: none;
+    }
+    .mobile-footer-states{
+        margin-top: 20px;
+        background-color: var(--text-background-list);
+        color: var(--footer);
+        height: 50px;
+        padding: 0 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+        border-radius: 5px 5px;
+        z-index: 1;
+    }
+    .active{
+        color: var(--bright-blue);
+    }
 }

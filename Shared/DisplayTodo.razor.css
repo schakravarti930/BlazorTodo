@@ -15,7 +15,7 @@
     padding-left: 64px;
     padding-right: 64px;
     font-family: 'Josefin Sans',sans-serif;
-    font-size: 20px;
+    font-size: 1em;
     color:var(--text-color-input);
     border-top: none;
     border-left: none;

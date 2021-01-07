@@ -32,6 +32,11 @@
             </div>
             <span id = "clear" @onclick="ClearCompleted">Clear Completed</span>
         </div>
+        <div class="mobile-footer-states">
+            <span @onclick="GetAllTodos" class="@(currentTab == "All" ? "active" : "")" >All</span>
+            <span @onclick ="GetActiveTodos" class="@(currentTab == "Active" ? "active" : "")">Active</span>
+            <span @onclick ="GetCompletedTodos" class="@(currentTab == "Completed" ? "active" : "")">Completed</span>
+        </div>
     </div>
 </div>
 
