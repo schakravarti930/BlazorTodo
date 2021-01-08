@@ -1,5 +1,5 @@
 
-<div class="displayTodo">
+<div class="displayTodo" draggable="true" @ondragstart="dragstart" @ondrop = "dragend">
     <input type="checkbox" checked = "@todoItem.IsDone" @onchange = "setDone" id="@todoItem.Id">
     <label for="@todoItem.Id" class="title">@todoItem.Title</label>
     <img src="images/icon-cross.svg" class="cross" @onclick="removeItem"> 
@@ -12,7 +12,10 @@
     public EventCallback<int> OnItemDeleted { get; set; }
     [Parameter]
     public EventCallback<int> OnItemSelected{ get; set; }
-    
+    [Parameter]
+    public EventCallback<int> OnDragStart {get;set;}
+    [Parameter]
+    public EventCallback<int> OnDragEnd { get; set; }
     private async Task setDone()
     {
         await OnItemSelected.InvokeAsync(todoItem.Id);
@@ -20,5 +23,13 @@
     private async Task removeItem()
     {
         await OnItemDeleted.InvokeAsync(todoItem.Id);
+    }
+    private async Task dragstart()
+    {
+        await OnDragStart.InvokeAsync(todoItem.Id);
+    }
+    private async Task dragend()
+    {
+        await OnDragEnd.InvokeAsync(todoItem.Id);
     }
 }

@@ -15,11 +15,14 @@
             <div class="circle"></div>
             <i class="fas fa-plus" id="add" @onclick = "AddTodo"></i>
         </div>
-        <div class="content">
+        <div class="content" ondragover="event.preventDefault();">
             @foreach (var todoItem in currentList)
             {
-                <DisplayTodo todoItem = "todoItem" OnItemDeleted = "@deleteItem" OnItemSelected = "@checkItem">
-
+                <DisplayTodo todoItem = "todoItem" 
+                             OnItemDeleted = "@deleteItem"
+                             OnItemSelected = "@checkItem" 
+                             OnDragStart="@HandleDragStart"
+                             OnDragEnd = "@HandleDragEnd">
                 </DisplayTodo>
             }
         </div>
@@ -47,6 +50,7 @@
     private  string currentTab = "All";
     private  string currentTheme = "Light";
     private string newTodo;
+    int currentIndex;
 
     protected override void OnInitialized()
     {
@@ -105,5 +109,20 @@
     private void changeTheme()
     {
         currentTheme = currentTheme == "Light" ? "Dark" : "Light";
+    }
+
+    void HandleDragStart(int Id)
+    {
+        currentIndex = todos.FindIndex(item => item.Id == Id);
+    }
+    void HandleDragEnd(int id)
+    {
+        var index = todos.FindIndex(item => item.Id == id);
+        
+        var current = todos[currentIndex];
+
+        todos.RemoveAt(currentIndex);
+        todos.Insert(index,current);
+        StateHasChanged();
     }
 }
