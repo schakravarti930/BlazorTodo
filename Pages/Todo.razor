@@ -12,7 +12,11 @@
         </div>
         <div class="input">
             <input placeholder="Create a new Todo..." type="text" @bind="newTodo" @onkeyup = "Enter"/>
-            <div class="circle"></div>
+            <div class="circle">
+                <div class="inner-circle">
+                    
+                </div>
+            </div>
             <i class="fas fa-plus" id="add" @onclick = "AddTodo"></i>
         </div>
         <div class="content" ondragover="event.preventDefault();">

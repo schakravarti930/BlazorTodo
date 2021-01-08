@@ -68,14 +68,25 @@ input[type=text]::placeholder{
 input:focus{
     caret-color: var(--bright-blue);
 }
-
+input[type=text]:focus + .circle{
+    background: linear-gradient(to right,hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+}
 .circle{
-    border: 1px solid var(--circle);
+    background: var(--circle);
     border-radius: 50%;
-    height: 20px;
-    width: 20px;
+    height: 22px;
+    width: 22px;
     margin-left: 20px;
     position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.inner-circle{
+    background-color: var(--text-background-list);
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
 }
 #add{
     color: rgb(179, 174, 174);
@@ -144,7 +155,7 @@ input:focus{
 .content::-webkit-scrollbar-thumb
 {
 	border-radius: 10px;
-	background-color: var(--bright-blue);
+	background: linear-gradient(to bottom,hsl(192, 100%, 67%), hsl(280, 87%, 65%));;
 }
 .mobile-footer-states{
     display: none;
