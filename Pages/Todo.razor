@@ -1,5 +1,6 @@
 ﻿@page "/"
 @inject Repository.FileIO file
+@inject ProtectedLocalStorage pLocalStorage
 @implements IDisposable
 
 <div class="main-page @(currentTheme == "Dark" ? "dark" : "")">
@@ -53,18 +54,21 @@
     private  List<TodoItem> todos;
     private List<TodoItem> currentList;
     private  string currentTab = "All";
-    private  string currentTheme = "Light";
+    private  string currentTheme;
     private string newTodo;
     int currentIndex;
 
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
         todos = file.LoadListFromFile();
         currentList = todos;
+        var cachedTheme = await pLocalStorage.GetAsync<string>("currentTheme");
+        currentTheme = cachedTheme.Success ? cachedTheme.Value : "Dark";
+        Console.WriteLine(cachedTheme.Value);
     }
     void IDisposable.Dispose()
     {
-         file.SaveListToFile(todos);
+        file.SaveListToFile(todos);
     }
     private void AddTodo()
     {
@@ -111,9 +115,10 @@
     {
         todos.RemoveAll(item => item.IsDone == true);
     }
-    private void changeTheme()
+    private async void changeTheme()
     {
         currentTheme = currentTheme == "Light" ? "Dark" : "Light";
+        await pLocalStorage.SetAsync("currentTheme", currentTheme);
     }
 
     void HandleDragStart(int Id)
@@ -123,7 +128,7 @@
     void HandleDragEnd(int id)
     {
         var index = todos.FindIndex(item => item.Id == id);
-        
+
         var current = todos[currentIndex];
 
         todos.RemoveAt(currentIndex);

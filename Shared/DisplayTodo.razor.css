@@ -45,11 +45,12 @@ input[type=checkbox] + label:hover::before{
     input[type=checkbox]:checked + label::before {
         content: url("images/icon-check.svg");
         background: linear-gradient(to right,hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+        
     }
-input[type=checkbox]:checked + label{
-    color: var(--list-item-checked);
-    text-decoration: line-through;
-}
+    input[type=checkbox]:checked + label {
+        color: var(--list-item-checked);
+        text-decoration: line-through;
+    }
 .cross{
     color: rgb(179, 174, 174);
     font-size: 24px;
